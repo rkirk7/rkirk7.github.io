@@ -1,5 +1,5 @@
 body {
-  width: 600px;
+  width: 700px;
     margin: 0 auto;
     padding: 0 20px 20px 20px;
   }
@@ -8,7 +8,7 @@ h1 {
     margin: 0;
     padding: 20px 0;
     color: white;
-    text-shadow: 3px 3px 1px red;
+    text-shadow: 1px 1px 1px gray;
     font-size: 60px;
     text-align: center;
 }
@@ -18,21 +18,27 @@ h2 {
     text-align: center;
     color: white;
   }
+  h3 {
+    font-size: 30px;
+    text-align: center;
+    color: white;
+  }
 
   p {
     font-size: 24px;
     text-align: left;
     color: white;
   }
-  ß
+  
   img {
     display: block;
     margin: 0 auto;
-    width: 200px;
+    max-width: 300px;
+  }
+  button {
+   display: block;
   }
 
   html {
-    background-color: darkslateblue;
+    background-color: darkblue;
   }
-  
-  /* all code derived from/inspired by MDN */  

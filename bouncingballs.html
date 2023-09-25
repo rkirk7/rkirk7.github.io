@@ -1,0 +1,206 @@
+<div id="ball" style="
+  z-index:5;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  background:green"></div>
+
+<div id="ball2" style="
+z-index:5;
+position:absolute;
+left:0px;
+top:200px;
+width:25px;
+height:25px;
+border-radius:50%;
+background:red"></div>
+
+<div id="ball3" style="
+z-index:5;
+position:absolute;
+left:200px;
+top:0px;
+width:30px;
+height:30px;
+border-radius:50%;
+background:black"></div>
+
+<div id="ball4" style="
+z-index:5;
+position:absolute;
+left:200px;
+top:250px;
+width:30px;
+height:30px;
+border-radius:50%;
+background:black"></div>
+
+<script>
+
+var ball = document.getElementById('ball');
+var ball2 = document.getElementById('ball2');
+var ball3 = document.getElementById('ball3');
+var ball4 = document.getElementById('ball4');
+ball.velocity = 16;
+ball2.velocity = 18;
+ball3.velocity = 20;
+ball4.velocity = 22
+ball.positionX = 0;
+ball.positionY = 0;
+ball2.positionX = 0;
+ball2.positionY = 75;
+ball3.positionX = 0;
+ball3.positionY = 150;
+ball4.positionX = 200;
+ball4.positionY = 200;
+
+ball.forwards = true;
+ball2.forwards = true;
+ball3.forwards = true;
+ball4.forwards = true;
+ball.down = true;
+ball2.down = true;
+ball3.down = true;
+ball4.down = true;
+ball.collision = false;
+ball2.collision = false;
+ball3.collision = false;
+ball4.collision = false;
+
+var balls = [ball, ball2, ball3, ball4];
+
+var colors = ["yellow", "green", "orange", "blue", "purple", "red", "black"];
+
+function moveBalls() {
+
+  checkCollisions()
+
+  for (var i = 0; i < balls.length; i++) {
+    var theBall = balls[i];
+
+if (theBall.positionX > 700) {
+  theBall.forwards = false;
+    changeColor(theBall);
+} else if (theBall.positionX <=0 ) {
+  theBall.forwards = true;
+    changeColor(theBall);
+}
+
+if (theBall.positionY > 300) {
+  theBall.down = false;
+    changeColor(theBall);
+} else if (theBall.positionY <=0 ) {
+  theBall.down = true;
+    changeColor(theBall);
+}
+
+  if (theBall.down == true) {
+  theBall.positionY = theBall.positionY + theBall.velocity;
+  } else {
+    theBall.positionY = theBall.positionY - theBall.velocity;
+  }
+  theBall.style.top = theBall.positionY + 'px';
+
+  if (theBall.forwards == true) {
+    theBall.positionX = theBall.positionX + theBall.velocity;
+  } else {
+    theBall.positionX = theBall.positionX - theBall.velocity;
+  }
+  theBall.style.left = theBall.positionX + 'px';
+}
+
+
+}
+
+function moveTheBall(theBall) {
+  if (theBall.down == true) {
+  theBall.positionY = theBall.positionY + theBall.velocity;
+  } else {
+    theBall.positionY = theBall.positionY - theBall.velocity;
+  }
+  theBall.style.top = theBall.positionY + 'px';
+
+  if (theBall.forwards == true) {
+    theBall.positionX = theBall.positionX + theBall.velocity;
+  } else {
+    theBall.positionX = theBall.positionX - theBall.velocity;
+  }
+  theBall.style.left = theBall.positionX + 'px';
+}
+
+function checkCollisions() {
+
+  for (var i = 0; i < balls.length; i++) {
+    var ball1 = balls[i];
+    if (ball1.collision == false){
+    for (var j = i + 1; j < balls.length; j++) {
+    var ball2 = balls[j];
+
+    if (ball2.collision == false) {
+
+  var xDistance = ball1.positionX - ball2.positionX;
+var yDistance = ball1.positionY - ball2.positionY;
+var radius1 = parseFloat(ball1.style.width) / 2;
+var radius2 = parseFloat(ball2.style.width) / 2;
+
+if (radius1 + radius2 > Math.sqrt(xDistance * xDistance + yDistance * yDistance)) { 
+  if (ball1.forwards == ball2.forwards && ball1.down == ball2.down) {
+ball1.down = !ball1.down;
+ball2.down = !ball1.down;
+
+  } else {
+  ball1.forwards = !ball1.forwards;
+  ball2.forwards = !ball2.forwards;
+  ball1.down = !ball1.down;
+  ball2.down = !ball2.down;
+  }
+
+ball1.collision = true;
+ball2.collision = true;
+ball1.velocity = radius2 * .75;
+ball2.velocity = radius1 * .75;
+moveTheBall(ball1)
+moveTheBall(ball2)
+changeColor(ball1)
+changeColor(ball2)
+    }
+  }
+ } 
+} else {
+    ball1.collision = false;
+  }
+}
+return
+}
+
+
+
+function changeColor(ball) {
+  let index = colors.indexOf(ball.style.background);
+  if (index == 6) {
+    index = 0;
+  } else {
+    index++
+  }
+  ball.style.background = colors[index];
+
+var width = parseFloat(ball.style.width);
+if (width <= 80) {
+  width = width + 3;
+} else {
+  width = 15;
+}
+
+ball.style.width = width + "px";
+ball.style.height = width + "px";
+
+
+  return
+}
+
+setInterval(moveBalls, 70);
+
+</script>

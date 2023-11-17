@@ -1,16 +1,16 @@
   let ball = document.getElementById("ball");
   var velocity = 10;
-var position = 300;
+var position = 0;
 var forwards = true;
 
 var colors = ["yellow", "green", "orange", "blue", "purple", "red", "black"];
 
 
 function moveBall() {
-  if (position > 1000) {
+  if (position >= window.innerWidth) {
     forwards = false;
     changeColor();
-  } else if (position <=300 ) {
+  } else if (position <=0 ) {
     forwards = true;
     changeColor();
   }

@@ -1,4 +1,4 @@
-<h1>Regan Kirk's GitHub Website</hi>
+<h1>Regan Kirk's Porftolio Website</hi>
 
 <h2>Description</h2>
 

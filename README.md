@@ -2,7 +2,7 @@
 
 <h2>Description</h2>
 
-This website was developed to act as my portfolio as part of the MITxEmeritus course.
+This website was developed to act as my portfolio as part of the MITxEmeritus course. I recently refactored the portfolio to allow for routing between pages to improve the user experience and simplify the navbar.
 
 <h2>Support</h2>
 
